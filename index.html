@@ -1,84 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MySkyPower / CREATIVE PRODUCTION GROUP We are the producers of your ideas. The workshop – the craftsmen – the designers – the engineers. Together we are one. One group of talented people who harness the power to build big ideas. From handmade to high-tech. With you we create. Bring us your ideas, designs, and dreams and we will build them. Whatever the scale. EVERY DAY WE BUILD BIG IDEAS We are MySkyPower." />
-    <meta property="og:title" content="My Sky Power | MSP" />
-    <meta property="og:description" content="MySkyPower / CREATIVE PRODUCTION GROUP We are the producers of your ideas. The workshop – the craftsmen – the designers – the engineers. Together we are one. One group of talented people who harness the power to build big ideas. From handmade to high-tech. With you we create. Bring us your ideas, designs, and dreams and we will build them. Whatever the scale. EVERY DAY WE BUILD BIG IDEAS We are MySkyPower." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.myskypower.net/" />
-    <title>Mexico Quiz</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome CDN Link for Icons-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <meta charset="utf-8">
+    <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+* {
+box-sizing: border-box;
+}
+body {
+background-color: #b8c6db;
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/640px-Flag_of_Mexico.svg.png");
+font-family: "Poppins", sans-serif;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+overflow: hidden;
+margin: 0;
+}
+.quiz-container {
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+width: 600px;
+max-width: 95vw;
+overflow: hidden;
+}
+.quiz-header {
+padding: 4rem;
+}
+h2 {
+padding: 1rem;
+text-align: center;
+margin: 0;
+}
+ul {
+list-style-type: none;
+padding: 0;
+}
+ul li {
+font-size: 1.2rem;
+margin: 1rem 0;
+}
+ul li label {
+cursor: pointer;
+}
+button {
+background-color: #8e44ad;
+color: #fff;
+border: none;
+display: block;
+width: 100%;
+cursor: pointer;
+font-size: 1.1rem;
+font-family: inherit;
+padding: 1.3rem;
+}
+button:hover {
+background-color: #732d91;
+}
+button:focus {
+outline: none;
+background-color: #5e3370;
+}
+    </style>
 </head>
 <body>
-    <!-- start Quiz button -->
-    <div class="start_btn"><button>Start Quiz</button></div>
-
-    <!-- Info Box -->
-    <div class="info_box">
-        <div class="info-title"><span>Some Rules of this Quiz</span></div>
-        <div class="info-list">
-            <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
-            <div class="info">2. Once you select your answer, it can't be undone.</div>
-            <div class="info">3. You can't select any option once time goes off.</div>
-            <div class="info">4. You can't exit from the Quiz while you're playing.</div>
-            <div class="info">5. You'll get points on the basis of your correct answers.</div>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+        <h2 id="question">Question is loading...</h2>
+        <ul>
+        <li>
+        <input type="radio" name="answer" id="a" class="answer" />
+        <label for="a" id="a_text">Answer...</label>
+        </li>
+        <li>
+        <input type="radio" name="answer" id="b" class="answer" />
+        <label for="b" id="b_text">Answer...</label>
+        </li>
+        <li>
+        <input type="radio" name="answer" id="c" class="answer" />
+        <label for="c" id="c_text">Answer...</label>
+        </li>
+        <li>
+        <input type="radio" name="answer" id="d" class="answer" />
+        <label for="d" id="d_text">Answer...</label>
+        </li>
+        </ul>
         </div>
-        <div class="buttons">
-            <button class="quit">Exit Quiz</button>
-            <button class="restart">Continue</button>
+        <button id="submit">Submit</button>
         </div>
-    </div>
 
-    <!-- Quiz Box -->
-    <div class="quiz_box">
-        <header>
-            <div class="title">Awesome Quiz Application</div>
-            <div class="timer">
-                <div class="time_left_txt">Time Left</div>
-                <div class="timer_sec">15</div>
-            </div>
-            <div class="time_line"></div>
-        </header>
-        <section>
-            <div class="que_text">
-                <!-- Here I've inserted question from JavaScript -->
-            </div>
-            <div class="option_list">
-                <!-- Here I've inserted options from JavaScript -->
-            </div>
-        </section>
-
-        <!-- footer of Quiz Box -->
-        <footer>
-            <div class="total_que">
-                <!-- Here I've inserted Question Count Number from JavaScript -->
-            </div>
-            <button class="next_btn">Next Que</button>
-        </footer>
-    </div>
-
-    <!-- Result Box -->
-    <div class="result_box">
-        <div class="icon">
-            <i class="fas fa-crown"></i>
-        </div>
-        <div class="complete_text">You've completed the Quiz!</div>
-        <div class="score_text">
-            <!-- Here I've inserted Score Result from JavaScript -->
-        </div>
-        <div class="buttons">
-            <button class="restart">Replay Quiz</button>
-            <button class="quit">Quit Quiz</button>
-        </div>
-    </div>
-
-    <!-- JavaScript files -->
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
-
+        <script>
+            const quizData = [
+{
+question: "In which year were the Olympic Games held in Mexico?",
+a: "1968",
+b: "1967",
+c: "1966",
+d: "1943",
+correct: "a",
+},
+{
+question: "What is the capital of Mexico?",
+a: "Columbia",
+b: "Mexico City",
+c: "Mexico Town",
+d: "Manila",
+correct: "b",
+},
+{
+question: "What is the principal religion of Mexico?",
+a: "Roman Catholic",
+b: "Christian",
+c: "Buddhist",
+d: "Iglesia ni Cristo",
+correct: "a",
+},
+{
+question: "What are the three colours of the Mexican Flag?",
+a: "Red, White, & Blue",
+b: "Green, White, & Red",
+c: "Yellow and Blue",
+d: "Red, Yellow, Blue, and White",
+correct: "b",
+},
+];
+const quiz = document.getElementById("quiz");
+const answerElements = document.querySelectorAll(".answer");
+const questionElement = document.getElementById("question");
+const a_text = document.getElementById("a_text");
+const b_text = document.getElementById("b_text");
+const c_text = document.getElementById("c_text");
+const d_text = document.getElementById("d_text");
+const submitButton = document.getElementById("submit");
+let currentQuiz = 0;
+let score = 0;
+const deselectAnswers = () => {
+answerElements.forEach((answer) => (answer.checked = false));
+};
+const getSelected = () => {
+let answer;
+answerElements.forEach((answerElement) => {
+if (answerElement.checked) answer = answerElement.id;
+});
+return answer;
+};
+const loadQuiz = () => {
+deselectAnswers();
+const currentQuizData = quizData[currentQuiz];
+questionElement.innerText = currentQuizData.question;
+a_text.innerText = currentQuizData.a;
+b_text.innerText = currentQuizData.b;
+c_text.innerText = currentQuizData.c;
+d_text.innerText = currentQuizData.d;
+};
+loadQuiz();
+submitButton.addEventListener("click", () => {
+const answer = getSelected();
+if (answer) {
+if (answer === quizData[currentQuiz].correct) score++;
+currentQuiz++;
+if (currentQuiz < quizData.length) loadQuiz();
+else {
+quiz.innerHTML = `
+<h2>You answered ${score}/${quizData.length} questions correctly</h2>
+<button onclick="history.go(0)">Play Again</button>
+` // location.reload() won't work in CodePen for security reasons;
+}
+}
+});
+        </script>
 </body>
 </html>
